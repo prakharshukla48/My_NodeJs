@@ -18,6 +18,11 @@ setTimeout(() => {
     });
 }, 2000);
 
+const hobbies = ['Sports', 'Cooking']
+console.log(hobbies.map(hobby => 'Hobby: ' + hobby));
+
+
+
 console.log('Hello!');
 console.log('Hi!')
 
