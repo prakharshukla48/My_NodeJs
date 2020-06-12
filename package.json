@@ -1,0 +1,23 @@
+{
+  "name": "first_nodejs",
+  "version": "1.0.0",
+  "description": "my demo project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayushsahu1999/My_NodeJs.git"
+  },
+  "author": "Ayush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayushsahu1999/My_NodeJs/issues"
+  },
+  "homepage": "https://github.com/ayushsahu1999/My_NodeJs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
