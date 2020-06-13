@@ -1,44 +1,40 @@
 const fs = require('fs');
 const path = require('path');
-const { resolve } = require('path');
-const { rejects } = require('assert');
-// const h = require('../util/path');
 
+const p = path.join(
+  path.dirname(process.mainModule.filename),
+  'data',
+  'products.json'
+);
+
+const getProductsFromFile = cb => {
+  fs.readFile(p, (err, fileContent) => {
+    if (err) {
+      cb([]);
+    } else {
+      cb(JSON.parse(fileContent));
+    }
+  });
+};
 
 module.exports = class Product {
-    constructor (title) {
-        this.title = title;
-    }
+  constructor(title, imageUrl, description, price) {
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
 
-    save() {
-        const p = path.join(path.dirname(process.mainModule.filename), 'data', 'products.json');
-        fs.readFile(p, (err, fileContent) => {
-            console.log(fileContent);
-            
-            let products = [];
-            if (!err) {
-                products = JSON.parse(fileContent);
-            }
-            products.push(this);
-            fs.writeFile(p, JSON.stringify(products), (err) => {
-                console.log(err);
-                
-            });
-        });
-        
-        // products.push(this);
-    }
+  save() {
+    getProductsFromFile(products => {
+      products.push(this);
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
+      });
+    });
+  }
 
-    static fetchAll() {
-        const promise = new Promise((resolve, reject) => {
-            const p = path.join(path.dirname(process.mainModule.filename), 'data', 'products.json');
-            fs.readFile(p, (err, fileContent) => {
-                if (err) {
-                    return resolve([]);
-                }
-                resolve(JSON.parse(fileContent));
-            });
-        });
-        return promise;
-    }
-}
+  static fetchAll(cb) {
+    getProductsFromFile(cb);
+  }
+};
