@@ -1,5 +1,3 @@
-mongodb+srv://test-user:Ayush@123@cluster0-zu4ux.mongodb.net/test?retryWrites=true&w=majority&authSource=admin
-
-jqOAiZsnWStf3AAA
+mongodb+srv://test-user:jqOAiZsnWStf3AAA@cluster0-zu4ux.mongodb.net/test?retryWrites=true&w=majority&authSource=admin
 
 5ee6f904f5695de51fdbf73a
