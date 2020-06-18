@@ -89,7 +89,11 @@ exports.postLogin = (req, res, next) => {
         res.redirect('/login');
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(500);
+    });
 };
 
 exports.postSignup = (req, res, next) => {
@@ -127,9 +131,17 @@ exports.postSignup = (req, res, next) => {
         subject: 'Sign Up Completed',
         html: '<h1>you successfuly signed up!</h1>'
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(500);
+      });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(500);
+    });
   
 };
 
@@ -177,8 +189,16 @@ exports.postReset = (req, res, next) => {
         `
       });
     })
-    .catch(err => console.log('Error1', err))
-    .catch(err => console.log('Error2', err))
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(500);
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(500);
+    });
   })
 };
 
@@ -207,7 +227,11 @@ exports.getNewPassword = (req, res, next) => {
       passwordToken: token
     });
   })
-  .catch(err => console.log('Not found: ',err));
+  .catch(err => {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(500);
+  });
 };
 
 exports.postNewPassword = (req, res, next) => {
@@ -229,9 +253,21 @@ exports.postNewPassword = (req, res, next) => {
   .then(result => {
     res.redirect('/login');
   })
-  .catch(err => console.log('Error during saving!', err))
-  .catch(err => console.log('Error during password hashing', err))
-  .catch(err => console.log('Error during User finding!', err));
+  .catch(err => {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(500);
+  })
+  .catch(err => {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(500);
+  })
+  .catch(err => {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(500);
+  });
 }
 
 exports.postLogout = (req, res, next) => {
